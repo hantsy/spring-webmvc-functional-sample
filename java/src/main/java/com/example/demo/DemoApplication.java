@@ -100,13 +100,10 @@ class PostHandler {
 
 @Component
 @Slf4j
+@RequiredArgsConstructor
 class DataInitializer {
 
     private final PostRepository posts;
-
-    public DataInitializer(PostRepository posts) {
-        this.posts = posts;
-    }
 
     @EventListener(ApplicationReadyEvent.class)
     public void initPosts() {
