@@ -1,15 +1,11 @@
 package com.example.demo
 
 
-import org.slf4j.LoggerFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.boot.runApplication
-import org.springframework.context.event.EventListener
 import org.springframework.context.support.beans
 import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.stereotype.Component
 import org.springframework.web.servlet.function.ServerRequest
 import org.springframework.web.servlet.function.ServerResponse
 import org.springframework.web.servlet.function.ServerResponse.*
@@ -32,7 +28,7 @@ val beans = beans {
             println("start data initialization...")
             val posts = ref<PostRepository>()
 
-            posts.deleteAll();
+            posts.deleteAll()
 
             arrayListOf(
                     Post(null, "my first post", "content of my first post"),
@@ -70,7 +66,6 @@ class PostRoutes(private val postHandler: PostHandler) {
     }
 }
 
-@Component
 class PostHandler(private val posts: PostRepository) {
 
     fun all(req: ServerRequest): ServerResponse {
