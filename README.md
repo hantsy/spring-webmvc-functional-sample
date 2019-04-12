@@ -1,7 +1,7 @@
 # Functional programming in Spring MVC
 Spring 5.0 embraced ReactiveStreams specification, introduced a new Reactive Stack as an alternative of traditional Servlet stack.  And it also  brought a new functional programming model to developers. But it only supported Reactive stack.
 
-The good news is in the incoming 5.2, the functional like APIs are be porting back the Servlet stack. For those developers who are stick on Servlet stack and want to experience the new programming model, it is absolutely a startling news.
+The good news is in the incoming 5.2, the functional like APIs are be porting back to the Servlet stack. For those developers who are stick on Servlet stack and want to experience the new programming model, it is absolutely a startling news.
 
 In this post, let's  take a glance at the new functional feature in Spring MVC.
 
@@ -132,7 +132,7 @@ Like the Kotlin DSL support in Reactive stack, the router also can be written in
 
 
 
-Besides these,  the MockMvc also supports Kotlin DSL,  you can write your tests in a fluent APIs like the following.
+Besides these,   MockMvc also get supports of Kotlin DSL,  you can write your tests in a fluent style like the following.
 
 ```kot
   @Test
@@ -155,7 +155,7 @@ Besides these,  the MockMvc also supports Kotlin DSL,  you can write your tests 
     }
 ```
 
-Check out the [source codes](https://github.com/hantsy/spring-webmvc-functional-sample) from my Github , and compare it with [the codes of demonstrating Reactive stack](https://github.com/hantsy/spring-reactive-sample) yourself.
+Check out the [source codes](https://github.com/hantsy/spring-webmvc-functional-sample) from my Github , and compare it with [the codes](https://github.com/hantsy/spring-reactive-sample)  that I had written to demonstrate Reactive stack .
 
 
 
