@@ -5,11 +5,11 @@ The good news is in the incoming 5.2, the functional like APIs are be porting ba
 
 In this post, let's  take a glance at the new functional feature in Spring MVC.
 
-Create a Spring Boot project using Spring initializr(http://start.spring.io).
+Create a Spring Boot project using Spring initializr(http://start.spring.io), add **Web **, **JPA**,  **Lombok**,  and **H2**  starters as dependencies. 
 
 > NOTE: Please select the new Spring Boot version  2.2.0.BUILD-SNAPSHOT to get the new Spring 5.2.M1 in its dependencies.
 
-Add **spring-boot-starter-data-jpa** and **Lombok**,  **H2** into dependencies. 
+
 
 Create a  simple JPA Entity `Post`. 
 
@@ -31,7 +31,7 @@ class Post {
 }
 ```
 
-And create Repository for this Entity.
+And create a Repository for the `Post` Entity.
 
 ```java
 interface PostRepository extends JpaRepository<Post, Long> {}
@@ -50,7 +50,7 @@ public RouterFunction<ServerResponse> routes(PostHandler postController) {
 }
 ```
 
-The codes is almost same as the one  we have used in Reactive stack, but note here the `ServerRequest`, `ServerResponse`, `RouterFuncation` is imported from the new package:`org.springframework.web.servlet.function`.
+The codes are almost same as the ones  we have used in Reactive stack, but note here the `ServerRequest`, `ServerResponse` and `RouterFunction` are imported from the new package:`org.springframework.web.servlet.function`.
 
 Let's have a look at the details of `PostHandler`.
 
@@ -113,9 +113,7 @@ class PostHandler {
 
 It is very similar to the codes of Reactive stack, and but the methods return a `ServerResponse` instead of `Mono<ServerResponse>`. 
 
-
-
-Like the Kotlin DSL support in Reactive stack, the router also can be written in Kotlin DSL.
+Like the RouterFunctionDSL  feature provided in Reactive stack, the routing rules also can be written in Kotlin DSL.
 
 ```ko
  router {
@@ -132,7 +130,7 @@ Like the Kotlin DSL support in Reactive stack, the router also can be written in
 
 
 
-Besides these,   MockMvc also get supports of Kotlin DSL,  you can write your tests in a fluent style like the following.
+Besides these,   MockMvc also gets support of Kotlin DSL,  you can write your tests in a fluent style like the following.
 
 ```kot
   @Test
