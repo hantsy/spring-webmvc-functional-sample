@@ -1,13 +1,13 @@
 # Functional programming in Spring MVC
-Spring 5.0 embraced ReactiveStreams specification, introduced a new Reactive Stack as an alternative of traditional Servlet stack.  And it also  brought a new functional programming model to developers. But it only supported Reactive stack.
+Spring 5.0 embraced ReactiveStreams specification, and introduced a new Reactive Stack as an alternative of the traditional Servlet stack.  And it also brought a new functional programming model to developers, but it is only supported in the Reactive stack.
 
-The good news is that in the incoming 5.2 the functional like APIs are being ported back to the Servlet stack. For those developers who are stick on Servlet stack and want to experience the new programming model, it is absolutely a startling news.
+The good news is that in the coming 5.2 the functional like APIs are being ported back to the Servlet stack. For those developers who are stick on Servlet stack and want to experience the new programming model, it is absolutely a startling news.
 
 In this post, let's  take a glance at the new functional feature in Spring MVC.
 
 Create a Spring Boot project using Spring initializr(http://start.spring.io), add **Web**, **JPA**,  **Lombok**,  and **H2**  starters as dependencies. 
 
-> NOTE: Please select the new Spring Boot version  2.2.0.BUILD-SNAPSHOT to get the new Spring 5.2.M1 in its dependencies.
+> NOTE: In the Spring Boot version tab, please select 2.2.0.BUILD-SNAPSHOT to get the new Spring 5.2.0.M1 in its dependencies.
 
 
 
