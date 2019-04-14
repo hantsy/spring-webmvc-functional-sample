@@ -84,7 +84,7 @@ class PostHandler(private val posts: PostRepository) {
 
     fun get(req: ServerRequest): ServerResponse {
         return this.posts.findById(req.pathVariable("id").toLong())
-                .map { post -> ok().body(post) }
+                .map { ok().body(it) }
                 .orElse(notFound().build())
     }
 
