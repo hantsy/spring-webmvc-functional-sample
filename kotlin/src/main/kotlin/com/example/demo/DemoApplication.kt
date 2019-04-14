@@ -14,7 +14,7 @@ import java.io.IOException
 import java.net.URI
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
+import javax.persistence.GenerationType.AUTO
 import javax.persistence.Id
 import javax.servlet.ServletException
 
@@ -30,12 +30,15 @@ val beans = beans {
 
             posts.deleteAll()
 
-            arrayListOf(
+            listOf(
                     Post(null, "my first post", "content of my first post"),
                     Post(null, "my second post", "content of my second post")
             ).forEach { posts.save(it) }
 
             println("done data initialization...")
+
+            println("initialized data::")
+            posts.findAll().forEach { print(it) }
 
         }
     }
@@ -111,7 +114,7 @@ class PostHandler(private val posts: PostRepository) {
 interface PostRepository : JpaRepository<Post, Long>
 
 @Entity
-data class Post(@Id @GeneratedValue(strategy = GenerationType.AUTO) val id: Long? = null,
+data class Post(@Id @GeneratedValue(strategy = AUTO) val id: Long? = null,
                 val title: String? = null,
                 val content: String? = null
 )

@@ -108,11 +108,14 @@ class DataInitializer {
 
     @EventListener(ApplicationReadyEvent.class)
     public void initPosts() {
-        log.info("initializing posts data...");
+        log.info(" start data initializing...");
         this.posts.deleteAll();
         Stream.of("Post one", "Post two").forEach(
             title -> this.posts.save(Post.builder().title(title).content("content of " + title).build())
         );
+        log.info(" done data initialization...");
+        log.info(" initialized data::");
+        this.posts.findAll().forEach(p -> log.info(p.toString()));
     }
 
 }
