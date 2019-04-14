@@ -79,7 +79,7 @@ class PostHandler(private val posts: PostRepository) {
         return created(URI.create("/posts/" + saved.id)).build()
     }
 
-    operator fun get(req: ServerRequest): ServerResponse {
+    fun get(req: ServerRequest): ServerResponse {
         return this.posts.findById(req.pathVariable("id").toLong())
                 .map { post -> ok().body(post) }
                 .orElse(notFound().build())
@@ -98,7 +98,7 @@ class PostHandler(private val posts: PostRepository) {
     }
 
     fun delete(req: ServerRequest): ServerResponse {
-        return this.posts.findById(java.lang.Long.valueOf(req.pathVariable("id")))
+        return this.posts.findById(req.pathVariable("id").toLong())
                 .map {
                     this.posts.delete(it)
                     noContent().build()
