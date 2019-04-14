@@ -24,6 +24,7 @@ import java.util.stream.Stream;
 import static javax.persistence.GenerationType.AUTO;
 import static org.springframework.web.servlet.function.RequestPredicates.*;
 import static org.springframework.web.servlet.function.RouterFunctions.route;
+import static org.springframework.web.servlet.function.ServerResponse.*;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -33,12 +34,12 @@ public class DemoApplication {
     }
 
     @Bean
-    public RouterFunction<ServerResponse> routes(PostHandler postController) {
-        return route(GET("/posts"), postController::all)
-            .andRoute(POST("/posts"), postController::create)
-            .andRoute(GET("/posts/{id}"), postController::get)
-            .andRoute(PUT("/posts/{id}"), postController::update)
-            .andRoute(DELETE("/posts/{id}"), postController::delete);
+    public RouterFunction<ServerResponse> routes(PostHandler postHandler) {
+        return route(GET("/posts"), postHandler::all)
+            .andRoute(POST("/posts"), postHandler::create)
+            .andRoute(GET("/posts/{id}"), postHandler::get)
+            .andRoute(PUT("/posts/{id}"), postHandler::update)
+            .andRoute(DELETE("/posts/{id}"), postHandler::delete);
     }
 }
 
@@ -53,19 +54,19 @@ class PostHandler {
     }
 
     public ServerResponse all(ServerRequest req) {
-        return ServerResponse.ok().body(this.posts.findAll());
+        return ok().body(this.posts.findAll());
     }
 
     public ServerResponse create(ServerRequest req) throws ServletException, IOException {
 
         var saved = this.posts.save(req.body(Post.class));
-        return ServerResponse.created(URI.create("/posts/" + saved.getId())).build();
+        return created(URI.create("/posts/" + saved.getId())).build();
     }
 
     public ServerResponse get(ServerRequest req) {
         return this.posts.findById(Long.valueOf(req.pathVariable("id")))
-            .map(post -> ServerResponse.ok().body(post))
-            .orElse(ServerResponse.notFound().build());
+            .map(post -> ok().body(post))
+            .orElse(notFound().build());
     }
 
     public ServerResponse update(ServerRequest req) throws ServletException, IOException {
@@ -80,8 +81,8 @@ class PostHandler {
                 }
             )
             .map(post -> this.posts.save(post))
-            .map(post -> ServerResponse.noContent().build())
-            .orElse(ServerResponse.notFound().build());
+            .map(post -> noContent().build())
+            .orElse(notFound().build());
 
     }
 
@@ -90,10 +91,10 @@ class PostHandler {
             .map(
                 post -> {
                     this.posts.delete(post);
-                    return ServerResponse.noContent().build();
+                    return noContent().build();
                 }
             )
-            .orElse(ServerResponse.notFound().build());
+            .orElse(notFound().build());
     }
 
 }

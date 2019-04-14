@@ -5,7 +5,7 @@ The good news is that in the coming 5.2 the functional like APIs are being porte
 
 In this post, let's  take a glance at the new functional feature in Spring MVC.
 
-Create a Spring Boot project using Spring initializr(http://start.spring.io), add **Web**, **JPA**,  **Lombok**,  and **H2**  starters as dependencies. 
+Create a Spring Boot project using [Spring initializr](http://start.spring.io), add **Web**, **JPA**,  **Lombok**,  and **H2**  starters as dependencies. 
 
 > NOTE: In the Spring Boot version tab, please select 2.2.0.BUILD-SNAPSHOT to get the new Spring 5.2.0.M1 in its dependencies.
 
