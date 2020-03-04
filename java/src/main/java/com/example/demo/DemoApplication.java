@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -27,6 +29,7 @@ import static org.springframework.web.servlet.function.RouterFunctions.route;
 import static org.springframework.web.servlet.function.ServerResponse.*;
 
 @SpringBootApplication
+@ConfigurationPropertiesScan
 public class DemoApplication {
 
     public static void main(String[] args) {
@@ -34,15 +37,23 @@ public class DemoApplication {
     }
 
     @Bean
-    public RouterFunction<ServerResponse> routes(PostHandler postHandler) {
-        return route(GET("/posts"), postHandler::all)
-            .andRoute(POST("/posts"), postHandler::create)
-            .andRoute(GET("/posts/{id}"), postHandler::get)
-            .andRoute(PUT("/posts/{id}"), postHandler::update)
-            .andRoute(DELETE("/posts/{id}"), postHandler::delete);
+    public RouterFunction<ServerResponse> routes(PostHandler postHandler, BlogProperties blogProperties) {
+        return route(GET("/info"), (req) -> ok().body(blogProperties))
+                .andRoute(GET("/posts"), postHandler::all)
+                .andRoute(POST("/posts"), postHandler::create)
+                .andRoute(GET("/posts/{id}"), postHandler::get)
+                .andRoute(PUT("/posts/{id}"), postHandler::update)
+                .andRoute(DELETE("/posts/{id}"), postHandler::delete);
     }
 }
 
+@ConfigurationProperties(prefix = "blog")
+@Data
+class BlogProperties {
+    private String title = "Nobody's Blog";
+    private String description = "Description of Nobody's Blog";
+    private String author = "Nobody";
+}
 
 @Component
 class PostHandler {
@@ -65,36 +76,36 @@ class PostHandler {
 
     public ServerResponse get(ServerRequest req) {
         return this.posts.findById(Long.valueOf(req.pathVariable("id")))
-            .map(post -> ok().body(post))
-            .orElse(notFound().build());
+                .map(post -> ok().body(post))
+                .orElse(notFound().build());
     }
 
     public ServerResponse update(ServerRequest req) throws ServletException, IOException {
         var data = req.body(Post.class);
 
         return this.posts.findById(Long.valueOf(req.pathVariable("id")))
-            .map(
-                post -> {
-                    post.setTitle(data.getTitle());
-                    post.setContent(data.getContent());
-                    return post;
-                }
-            )
-            .map(post -> this.posts.save(post))
-            .map(post -> noContent().build())
-            .orElse(notFound().build());
+                .map(
+                        post -> {
+                            post.setTitle(data.getTitle());
+                            post.setContent(data.getContent());
+                            return post;
+                        }
+                )
+                .map(post -> this.posts.save(post))
+                .map(post -> noContent().build())
+                .orElse(notFound().build());
 
     }
 
     public ServerResponse delete(ServerRequest req) {
         return this.posts.findById(Long.valueOf(req.pathVariable("id")))
-            .map(
-                post -> {
-                    this.posts.delete(post);
-                    return noContent().build();
-                }
-            )
-            .orElse(notFound().build());
+                .map(
+                        post -> {
+                            this.posts.delete(post);
+                            return noContent().build();
+                        }
+                )
+                .orElse(notFound().build());
     }
 
 }
@@ -111,7 +122,7 @@ class DataInitializer {
         log.info(" start data initializing...");
         this.posts.deleteAll();
         Stream.of("Post one", "Post two").forEach(
-            title -> this.posts.save(Post.builder().title(title).content("content of " + title).build())
+                title -> this.posts.save(Post.builder().title(title).content("content of " + title).build())
         );
         log.info(" done data initialization...");
         log.info(" initialized data::");
@@ -122,7 +133,6 @@ class DataInitializer {
 
 interface PostRepository extends JpaRepository<Post, Long> {
 }
-
 
 @Data
 @ToString

@@ -3,6 +3,9 @@ package com.example.demo
 
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan
+import org.springframework.boot.context.properties.ConstructorBinding
 import org.springframework.boot.runApplication
 import org.springframework.context.support.beans
 import org.springframework.data.jpa.repository.JpaRepository
@@ -19,6 +22,7 @@ import javax.persistence.Id
 import javax.servlet.ServletException
 
 @SpringBootApplication
+@ConfigurationPropertiesScan
 class DemoApplication
 
 
@@ -44,7 +48,8 @@ val beans = beans {
     }
 
     bean {
-        PostRoutes(PostHandler(ref())).routes()
+        val blogProperties  = ref<BlogProperties>()
+        PostRoutes(PostHandler(ref()),  blogProperties).routes()
     }
 
 
@@ -56,8 +61,16 @@ fun main(args: Array<String>) {
     }
 }
 
-class PostRoutes(private val postHandler: PostHandler) {
+@ConfigurationProperties(prefix = "blog")
+@ConstructorBinding
+data class BlogProperties(val title: String = "Nobody's Blog",
+                          val description: String = "Description of Nobody's Blog",
+                          val author: String = "Nobody"
+)
+
+class PostRoutes(private val postHandler: PostHandler, private val blogProperties: BlogProperties) {
     fun routes() = router {
+        GET("/info") { req-> ok().body(blogProperties)}
         "/posts".nest {
             GET("", postHandler::all)
             GET("{id}", postHandler::get)

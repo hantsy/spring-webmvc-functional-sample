@@ -9,7 +9,7 @@ import org.springframework.boot.web.server.LocalServerPort;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class DemoApplicationTests {
+public class IntegrationTests {
 
     @LocalServerPort
     private int port;
@@ -25,7 +25,6 @@ public class DemoApplicationTests {
     public void getPosts_shouldOK() {
         Post[] posts = restTemplate.getForObject("http://localhost:" + this.port + "/posts", Post[].class);
         assertThat(posts.length == 2);
-
     }
 
 }

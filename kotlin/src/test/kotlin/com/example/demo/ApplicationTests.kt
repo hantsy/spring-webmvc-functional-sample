@@ -1,6 +1,7 @@
 package com.example.demo
 
 
+import org.hamcrest.Matchers.`is`
 import org.hamcrest.Matchers.containsString
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -10,10 +11,9 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment.MOCK
 import org.springframework.context.ApplicationContextInitializer
 import org.springframework.context.support.GenericApplicationContext
 import org.springframework.http.MediaType.APPLICATION_JSON
-import org.springframework.http.MediaType.APPLICATION_JSON_UTF8
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.get
-import org.springframework.test.web.servlet.setup.MockMvcBuilders
+import org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup
 import org.springframework.web.context.WebApplicationContext
 import java.util.*
 
@@ -39,7 +39,25 @@ class DemoApplicationTests {
 
     @BeforeEach
     fun setup() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(appContext).build();
+        mockMvc = webAppContextSetup(appContext).build();
+    }
+
+    @Test
+    fun `Get blog properties`() {
+        mockMvc
+                .get("/info") {
+                    accept = APPLICATION_JSON
+                }
+                .andExpect {
+                    status { isOk }
+                    content { contentType(APPLICATION_JSON) }
+                    jsonPath("$.title") { value(`is`("Hantsy'Blog"))}
+                    jsonPath("$.description") { value(`is`("Description of Hantsy's Blog"))}
+                    jsonPath("$.author") { value(`is`("Hantsy"))} //content { json("""{"someBoolean": false}""", false) }
+                }
+                .andDo {
+                    print()
+                }
     }
 
     @Test
@@ -55,7 +73,7 @@ class DemoApplicationTests {
                 }
                 .andExpect {
                     status { isOk }
-                    content { contentType(APPLICATION_JSON_UTF8) }
+                    content { contentType(APPLICATION_JSON) }
                     jsonPath("$[0].title") { value(containsString("post")) } //content { json("""{"someBoolean": false}""", false) }
                 }
                 .andDo {
