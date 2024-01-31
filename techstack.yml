@@ -1,0 +1,191 @@
+repo_name: hantsy/spring-webmvc-functional-sample
+report_id: 99257d03944d442346b45b11b46d8cfb
+version: 0.1
+repo_type: Public
+timestamp: '2024-01-31T08:57:18+00:00'
+requested_by: hantsy
+provider: github
+branch: master
+detected_tools_count: 15
+tools:
+- name: Java
+  description: A concurrent, class-based, object-oriented, language specifically designed
+    to have as few implementation dependencies as possible
+  website_url: https://www.java.com
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/995/K85ZWV2F.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample
+  detection_source: Repo Metadata
+- name: Kotlin
+  description: Statically typed Programming Language targeting JVM and JavaScript
+  website_url: https://kotlinlang.org/
+  open_source: true
+  hosted_saas: true
+  category: Languages & Frameworks
+  sub_category: Languages
+  image_url: https://img.stackshare.io/service/3750/pCfEzr6L.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample
+  detection_source: Repo Metadata
+- name: Spring Framework
+  description: An application framework and inversion of control container for the
+    Java platform
+  website_url: https://spring.io/projects/spring-framework
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Languages & Frameworks
+  sub_category: Frameworks (Full Stack)
+  image_url: https://img.stackshare.io/service/2006/spring-framework-project-logo.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample/blob/master/java/pom.xml
+  detection_source: java/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-04-12 12:37:24.000000000 Z
+- name: H2 Database
+  description: A relational database management system written in Java
+  website_url: http://www.h2database.com/
+  open_source: false
+  hosted_saas: false
+  category: Data Stores
+  sub_category: Databases
+  image_url: https://img.stackshare.io/service/3105/h2-logo_square_400x400.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample/blob/master/java/pom.xml
+  detection_source: java/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-04-12 12:37:24.000000000 Z
+- name: Git
+  description: Fast, scalable, distributed revision control system
+  website_url: http://git-scm.com/
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Version Control System
+  image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample
+  detection_source: Repo Metadata
+- name: JUnit
+  description: A programmer-oriented testing framework for Java
+  website_url: http://junit.org/
+  license: EPL-1.0
+  open_source: true
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Testing Frameworks
+  image_url: https://img.stackshare.io/service/2020/874086.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample/blob/master/java/src/test/resources/junit-platform.properties
+  detection_source: java/src/test/resources/junit-platform.properties
+  last_updated_by: hantsy
+  last_updated_on: 2020-03-04 10:36:39.000000000 Z
+- name: Apache Camel
+  description: A versatile open source integration framework
+  website_url: https://camel.apache.org/
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Application Hosting
+  sub_category: Platform as a Service
+  image_url: https://img.stackshare.io/service/3276/xWt1RFo6_400x400.jpg
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample/blob/master/java/src/main/resources/application.properties
+  detection_source: java/src/main/resources/application.properties
+  last_updated_by: hantsy
+  last_updated_on: 2020-03-04 10:36:39.000000000 Z
+- name: com.fasterxml.jackson.module:jackson-module-kotlin
+  description: Add-on module for Jackson
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample/blob/master/kotlin/pom.xml
+  detection_source: kotlin/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2020-03-04 10:36:39.000000000 Z
+- name: com.h2database:h2
+  description: H2 Database Engine
+  license: MIT-feh
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample/blob/master/java/pom.xml
+  detection_source: java/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-04-12 12:37:24.000000000 Z
+- name: org.jetbrains.kotlin:kotlin-reflect
+  description: Kotlin Full Reflection Library
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample/blob/master/kotlin/pom.xml
+  detection_source: kotlin/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2020-03-04 10:36:39.000000000 Z
+- name: org.jetbrains.kotlin:kotlin-stdlib-jdk8
+  description: Kotlin Standard Library JDK 8 extension
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample/blob/master/kotlin/pom.xml
+  detection_source: kotlin/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2020-03-04 10:36:39.000000000 Z
+- name: org.projectlombok:lombok
+  description: 'Spice up your java: Automatic Resource Management'
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample/blob/master/java/pom.xml
+  detection_source: java/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-25 09:36:10.000000000 Z
+- name: org.springframework.boot:spring-boot-starter-data-jpa
+  description: Starter for using Spring Data JPA with Hibernate
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample/blob/master/java/pom.xml
+  detection_source: java/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-25 09:36:10.000000000 Z
+- name: org.springframework.boot:spring-boot-starter-test
+  description: Starter for testing Spring Boot applications with libraries including
+    JUnit
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample/blob/master/java/pom.xml
+  detection_source: java/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-25 09:36:10.000000000 Z
+- name: org.springframework.boot:spring-boot-starter-web
+  description: Starter for building web, including RESTful, applications using Spring
+    MVC
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: Maven Packages
+  image_url: https://img.stackshare.io/package/maven/image.png
+  detection_source_url: https://github.com/hantsy/spring-webmvc-functional-sample/blob/master/java/pom.xml
+  detection_source: java/pom.xml
+  last_updated_by: hantsy
+  last_updated_on: 2019-12-25 09:36:10.000000000 Z
